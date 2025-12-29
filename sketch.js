@@ -19,6 +19,16 @@ function setup() {
   canvas = createCanvas(w, h)
   canvas.parent(container)
 
+  const hint = document.createElement("div")
+  hint.classList.add("canvas-hint")
+  hint.id = "canvas-hint"
+  hint.textContent = "Touch / Click on the canvas to interact"
+  container.appendChild(hint)
+
+  canvas.mousePressed(() => { hint.style.opacity = 0 })
+  canvas.touchStarted(() => { hint.style.opacity = 0 })
+  setTimeout(() => { hint.style.opacity = 0 }, 5000)
+
   colorMode(HSB, 360, 100, 100)
   strokeWeight(1)
   noFill()
@@ -59,16 +69,13 @@ function setup() {
 function resetGrid() {
   cols = int(densitySlider.value())
   rows = int(map(flowSlider.value(), 0, 100, 4, 12))
-
   vSegs = Array.from({ length: cols + 1 }, () => Array(rows).fill(true))
   hSegs = Array.from({ length: rows + 1 }, () => Array(cols).fill(true))
-
   redraw()
 }
 
 function draw() {
   background(0, 0, 100)
-
   const cw = width / cols
   const rh = height / rows
   const depth = map(cubeDepthSlider.value(), 0, 100, 0, min(cw, rh) * 0.8)
@@ -120,10 +127,8 @@ function mouseDragged() {
   const rh = height / rows
   const c = int(mouseX / cw)
   const r = int(mouseY / rh)
-
   if (vSegs[c] && vSegs[c][r] !== undefined) vSegs[c][r] = false
   if (hSegs[r] && hSegs[r][c] !== undefined) hSegs[r][c] = false
-
   redraw()
 }
 
