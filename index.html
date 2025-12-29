@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GEN·GRID — Generative Tool</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <header class="sidebar-header">
+      <span class="brand">GEN·GRID</span>
+    </header>
+
+    <section class="panel">
+      <header class="panel-header"><h3>About</h3></header>
+      <div class="panel-body">
+        <p>Generative grid system built with p5.js. Click on canvas to remove elements. Regenerate to reset.</p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <header class="panel-header"><h3>Parameters</h3></header>
+      <div class="panel-body">
+        <div class="control">
+          <label>Density</label>
+          <div class="range-wrapper" data-segments="30">
+            <input id="density" type="range" min="6" max="50" value="22">
+            <div class="range-bar"></div>
+          </div>
+        </div>
+        <div class="control">
+          <label>Flow</label>
+          <div class="range-wrapper" data-segments="30">
+            <input id="flow" type="range" min="0" max="100" value="35">
+            <div class="range-bar"></div>
+          </div>
+        </div>
+        <div class="control">
+          <label>Cube Depth</label>
+          <div class="range-wrapper" data-segments="30">
+            <input id="cubeDepth" type="range" min="0" max="100" value="20">
+            <div class="range-bar"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <header class="panel-header"><h3>Mode</h3></header>
+      <div class="panel-body">
+        <button id="cube-toggle" class="toggle-btn">3D Mode · OFF</button>
+        <div class="segmented">
+          <button class="active" data-style="brutalist">Brutalist</button>
+          <button data-style="sinuous">Sinuous</button>
+          <button data-style="colorful">Colorful</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <header class="panel-header"><h3>Output</h3></header>
+      <div class="panel-body">
+        <input id="fileName" type="text" value="poster">
+        <button id="generate" class="primary">Regenerate</button>
+        <button id="export" class="secondary">Export Image</button>
+      </div>
+    </section>
+  </aside>
+
+  <main class="workspace">
+    <div id="canvas-container"></div>
+  </main>
+
+  <script src="sketch.js"></script>
+</body>
+</html>
